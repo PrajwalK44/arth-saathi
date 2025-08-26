@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "asset": "HDFC Equity Fund",
+    "type": "Mutual Fund",
+    "status": "Active",
+    "amount": "₹2,50,000",
+    "returns": "+15.2%",
+    "allocation": "25%"
+  },
+  {
+    "id": 2,
+    "asset": "SBI Blue Chip Fund",
+    "type": "Mutual Fund",
+    "status": "Active",
+    "amount": "₹1,80,000",
+    "returns": "+12.8%",
+    "allocation": "18%"
+  },
+  {
+    "id": 3,
+    "asset": "ICICI Gold ETF",
+    "type": "ETF",
+    "status": "Active",
+    "amount": "₹1,20,000",
+    "returns": "+8.5%",
+    "allocation": "12%"
+  },
+  {
+    "id": 4,
+    "asset": "Axis Bank Stock",
+    "type": "Stock",
+    "status": "Active",
+    "amount": "₹95,000",
+    "returns": "+22.3%",
+    "allocation": "9.5%"
+  },
+  {
+    "id": 5,
+    "asset": "TCS Stock",
+    "type": "Stock",
+    "status": "Active",
+    "amount": "₹1,35,000",
+    "returns": "+18.7%",
+    "allocation": "13.5%"
+  },
+  {
+    "id": 6,
+    "asset": "NSE Nifty 50 ETF",
+    "type": "ETF",
+    "status": "Active",
+    "amount": "₹75,000",
+    "returns": "+14.1%",
+    "allocation": "7.5%"
+  },
+  {
+    "id": 7,
+    "asset": "Fixed Deposit",
+    "type": "Fixed Income",
+    "status": "Active",
+    "amount": "₹2,00,000",
+    "returns": "+6.8%",
+    "allocation": "20%"
+  },
+  {
+    "id": 8,
+    "asset": "PPF Account",
+    "type": "Tax Saving",
+    "status": "Active",
+    "amount": "₹85,000",
+    "returns": "+7.1%",
+    "allocation": "8.5%"
+  },
+  {
+    "id": 9,
+    "asset": "ELSS Fund",
+    "type": "Tax Saving",
+    "status": "Active",
+    "amount": "₹65,000",
+    "returns": "+16.9%",
+    "allocation": "6.5%"
+  },
+  {
+    "id": 10,
+    "asset": "Real Estate",
+    "type": "Property",
+    "status": "Held",
+    "amount": "₹12,00,000",
+    "returns": "+9.2%",
+    "allocation": "30%"
+  }
+]
