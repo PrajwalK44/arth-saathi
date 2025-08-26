@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { useSimulationStore } from "../store/simulationStore";
 import {
   Card,
@@ -14,7 +14,7 @@ import PageLayout from "../components/layout/PageLayout";
 import { Play, RotateCcw, Home, Award, TrendingUp } from "lucide-react";
 
 const ResultsPage = () => {
-  const { simulationId } = useParams<{ simulationId: string }>();
+  // const { simulationId } = useParams<{ simulationId: string }>();
   const navigate = useNavigate();
 
   const {

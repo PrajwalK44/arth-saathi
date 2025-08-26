@@ -1,5 +1,5 @@
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/common/Card';
-import { TrendingUp, TrendingDown, Shield, CreditCard } from 'lucide-react';
+import { Card, CardContent } from '../../components/common/Card';
+import { TrendingUp, TrendingDown, Shield } from 'lucide-react';
 
 interface KeyMetricsProps {
   finalNetWorth: number;
