@@ -1,4 +1,5 @@
-import {  useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useSimulationStore } from "../store/simulationStore";
 import {
   Card,
@@ -14,7 +15,6 @@ import PageLayout from "../components/layout/PageLayout";
 import { Play, RotateCcw, Home, Award, TrendingUp } from "lucide-react";
 
 const ResultsPage = () => {
-  // const { simulationId } = useParams<{ simulationId: string }>();
   const navigate = useNavigate();
 
   const {
@@ -25,6 +25,10 @@ const ResultsPage = () => {
     currentNetWorth,
     resetSimulation,
   } = useSimulationStore();
+
+  // AI Coach Video state
+  const [showAICoachVideo, setShowAICoachVideo] = useState(false);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   if (!persona || netWorthHistory.length === 0) {
     return (
@@ -79,6 +83,15 @@ const ResultsPage = () => {
     }).format(amount);
   };
 
+  // Handler for AI Coach Video
+  const handleGenerateVideo = () => {
+    setIsGenerating(true);
+    setTimeout(() => {
+      setShowAICoachVideo(true);
+      setIsGenerating(false);
+    }, 1500);
+  };
+
   return (
     <PageLayout className="bg-background">
       {/* Header */}
@@ -129,62 +142,6 @@ const ResultsPage = () => {
       </div>
 
       <div className="container mx-auto px-4 py-16">
-        {/* AI Coach Video Placeholder */}
-        <Card variant="elevated" className="mb-12">
-          <CardHeader>
-            <CardTitle className="flex items-center space-x-2">
-              <Play className="h-5 w-5 text-accent" />
-              <span>Here's Your Personalized Analysis</span>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="bg-muted rounded-lg aspect-video flex items-center justify-center mb-6">
-              <div className="text-center">
-                <Play className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                <p className="text-lg font-semibold text-text-primary mb-2">
-                  AI Coach Analysis Video
-                </p>
-                <p className="text-text-secondary">
-                  Your personalized financial coaching video would appear here
-                </p>
-              </div>
-            </div>
-
-            <div className="prose max-w-none">
-              <h3 className="text-xl font-semibold text-text-primary mb-4">
-                Key Insights from Your Journey:
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
-                <div>
-                  <h4 className="font-semibold text-text-primary mb-2">
-                    Strengths:
-                  </h4>
-                  <ul className="space-y-1 text-text-secondary">
-                    <li>• Completed all 12 months of scenarios</li>
-                    <li>
-                      • Made {ledger.length} important financial decisions
-                    </li>
-                    <li>
-                      • {netChange >= 0 ? "Increased" : "Managed"} net worth
-                      during challenging times
-                    </li>
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="font-semibold text-text-primary mb-2">
-                    Areas for Growth:
-                  </h4>
-                  <ul className="space-y-1 text-text-secondary">
-                    <li>• Emergency fund planning</li>
-                    <li>• Investment diversification</li>
-                    <li>• Risk management strategies</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
         {/* Key Metrics */}
         <div className="mb-12">
           <h2 className="text-3xl font-bold text-text-primary mb-8 text-center">
@@ -212,6 +169,82 @@ const ResultsPage = () => {
         {/* Decision Path */}
         <div className="mb-12">
           <DecisionPath ledger={ledger} events={events} />
+        </div>
+
+        {/* AI Coach Video Option */}
+        <div className="mb-12 flex flex-col items-center">
+          {!showAICoachVideo ? (
+            <CTAButton
+              variant="accent"
+              size="lg"
+              className="flex items-center space-x-2"
+              onClick={handleGenerateVideo}
+              disabled={isGenerating}
+            >
+              <Play className="h-5 w-5" />
+              <span>
+                {isGenerating
+                  ? "Generating Video..."
+                  : "Generate AI Coach Video"}
+              </span>
+            </CTAButton>
+          ) : (
+            <Card variant="elevated" className="w-full max-w-2xl">
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <Play className="h-5 w-5 text-accent" />
+                  <span>Here's Your Personalized Analysis</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-muted rounded-lg aspect-video flex items-center justify-center mb-6">
+                  <div className="text-center">
+                    <Play className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                    <p className="text-lg font-semibold text-text-primary mb-2">
+                      AI Coach Analysis Video
+                    </p>
+                    <p className="text-text-secondary">
+                      Your personalized financial coaching video would appear
+                      here
+                    </p>
+                  </div>
+                </div>
+
+                <div className="prose max-w-none">
+                  <h3 className="text-xl font-semibold text-text-primary mb-4">
+                    Key Insights from Your Journey:
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div>
+                      <h4 className="font-semibold text-text-primary mb-2">
+                        Strengths:
+                      </h4>
+                      <ul className="space-y-1 text-text-secondary">
+                        <li>• Completed all 12 months of scenarios</li>
+                        <li>
+                          • Made {ledger.length} important financial decisions
+                        </li>
+                        <li>
+                          • {netChange >= 0 ? "Increased" : "Managed"} net worth
+                          during challenging times
+                        </li>
+                      </ul>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-text-primary mb-2">
+                        Areas for Growth:
+                      </h4>
+                      <ul className="space-y-1 text-text-secondary">
+                        <li>• Emergency fund planning</li>
+                        <li>• Investment diversification</li>
+                        <li>• Risk management strategies</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
         </div>
 
         {/* Action Buttons */}
